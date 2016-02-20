@@ -1,19 +1,33 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+- gem build sensu-plugins-gelf.gemspec
+- gem install sensu-plugins-gelf-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: c/bAcYtiAbyLRtCPRWaGJLELss9OfXzcHQjdtohpjJg47ZscvEt3Z5qbJ67WPED8HYALxFM9JiOM4GjryZh0BrI4Q3L+5y9bKY5UUrBZKcfAWWclBTcARmzkt+uANfZs1aeZEcPYnW93gtmptKDdMy7jSWQpbn62lHtNeRusHpw=
+  gem: sensu-plugins-gelf
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-gelf
