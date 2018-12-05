@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsGelf::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
+  s.add_runtime_dependency 'sensu-plugin', '>= 1.2', '< 4.0'
   s.add_runtime_dependency 'gelf', '1.4.0'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
